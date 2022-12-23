@@ -1,3 +1,4 @@
+import keyboard
 import requests
 import sortjanpads as j
 import googletrans
@@ -64,12 +65,16 @@ def getData(name,village):
 
 
 def printPrettyData(district,tehsil,village,serdata):
+    c=0
     table=Table(title=f":{district.getName()} > {tehsil.getName()} > {village.getName()}")
     table.add_column("Name",style="cyan")
     table.add_column("Father's Name",style="green")
     for i in serdata:
-        table.add_row(str(i.get('name')),str(i.get('father')))
-    console.print(table)
+        if(i.get('name')!=''):
+            c=1
+            table.add_row(str(i.get('name')),str(i.get('father')))
+    if(c==1):
+        console.print(table)
 
 def askChoice():
     ch=int(input("1. Search In One Village\n2. Search In All Villages\nEnter: "))
@@ -81,6 +86,7 @@ def main():
     district=getDistrict()
     tehsil=getTehsil(district)
     inputuser.askName()
+    print(inputuser.getHindiName())
     ask=askChoice()
     if(ask==1):
         village=getVillage(district,tehsil)
@@ -89,6 +95,8 @@ def main():
     elif(ask==2):
         vill=tehsil.getVillages()
         for i in range(tehsil.getVillageCount()):
+            if(keyboard.is_pressed('q')):
+                break
             village=getVillage(district,tehsil,i)
             serverdata=getData(inputuser.getHindiName(),village)
             printPrettyData(district,tehsil,village,serverdata)
