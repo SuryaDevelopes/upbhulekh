@@ -1,4 +1,3 @@
-import keyboard
 import requests
 import sortjanpads as j
 import googletrans
@@ -95,8 +94,6 @@ def main():
     elif(ask==2):
         vill=tehsil.getVillages()
         for i in range(tehsil.getVillageCount()):
-            if(keyboard.is_pressed('q')):
-                break
             village=getVillage(district,tehsil,i)
             serverdata=getData(inputuser.getHindiName(),village)
             printPrettyData(district,tehsil,village,serverdata)
