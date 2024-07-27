@@ -9,7 +9,7 @@ UP Bhulekh is a powerful Command Line Interface (CLI) tool designed to assist in
   2. Create a Python Virtual environment so that your system packages won't effect.
   3. Install the required packages present in requirements.txt file.
   ```
-  git clone https://github.com/SuryaDevelopes/upbhulekhorg.git
+  git clone https://github.com/SuryaDevelopes/upbhulekh.git
   python3 -m venv virtual
   source virtual/bin/activate
   pip3 install -r requirements.txt
